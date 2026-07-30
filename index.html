@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link
+      rel="preload"
+      href="./font/Jost-VariableFont_wght.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    >
+    <link rel="icon" href="data:,">
+    <title>Phillip Entin</title>
+    <style>
+      @font-face {
+        font-family: "Jost";
+        src:
+          url("./font/Jost-VariableFont_wght.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      :root {
+        --paper: #F5F2E8;
+        --ink: #1A1A18;
+        --red: #C8302A;
+        --blue: #1E3878;
+        --yellow: #E8C018;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Jost", Futura, sans-serif;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: auto;
+        padding: 3rem 2rem 4rem;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .bar {
+        width: 2rem;
+        background: var(--red);
+        justify-self: end;
+      }
+
+      h1 {
+        margin: 0;
+        text-align: left;
+        text-transform: uppercase;
+        font-size: clamp(4rem, 10vw, 9rem);
+        line-height: .82;
+        letter-spacing: -.06em;
+      }
+
+      .cv {
+        max-width: 58rem;
+      }
+
+      details {
+        border-top: 2px solid var(--ink);
+      }
+
+      details:last-child {
+        border-bottom: 2px solid var(--ink);
+      }
+
+      summary {
+        display: grid;
+        grid-template-columns: 1.5rem 1fr auto;
+        gap: 1rem;
+        align-items: center;
+        padding: 1rem 0;
+        list-style: none;
+        font-size: clamp(1.3rem, 2vw, 2.2rem);
+        font-weight: 560;
+        cursor: pointer;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      summary::before {
+        content: "";
+        height: 1.5em;
+        background: var(--red);
+      }
+
+      summary::after {
+        content: "+";
+      }
+
+      details[open] summary::after {
+        content: "−";
+      }
+
+      .content {
+        padding: 0 0 1.2rem 2.5rem;
+      }
+
+      .content a {
+        color: var(--blue);
+        text-decoration-thickness: .08em;
+        text-underline-offset: .14em;
+      }
+
+      .content a:hover {
+        color: var(--red);
+      }
+
+      .content article,
+      .service-list li {
+        position: relative;
+        padding-left: 1.3rem;
+      }
+
+      .content article::before,
+      .service-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: .45rem;
+        border-top: .35rem solid transparent;
+        border-bottom: .35rem solid transparent;
+        border-left: .6rem solid var(--yellow);
+      }
+
+      .content h3 {
+        margin: 0 0 .25rem;
+      }
+
+      .content h3 + p {
+        margin-top: .25rem;
+      }
+
+      .service-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .content article + article {
+        margin-top: 1.75rem;
+      }
+
+      .service-list li + li {
+        margin-top: .6rem;
+      }
+
+      .socials {
+        --size: 5rem;
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+        margin-top: 3rem;
+      }
+
+      .socials::before {
+        content: "";
+        flex: 1;
+        height: 3px;
+        margin-right: -.8rem;
+        background: var(--red);
+      }
+
+      .social {
+        display: grid;
+        width: var(--size);
+        height: var(--size);
+        flex-shrink: 0;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--blue);
+        color: var(--paper);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .social:first-of-type,
+      .social:last-of-type {
+        width: calc(var(--size) / 2);
+        font-size: .9rem;
+      }
+
+      .social:first-of-type {
+        border-radius: 0 var(--size) var(--size) 0;
+      }
+
+      .social:last-of-type {
+        border-radius: var(--size) 0 0 var(--size);
+      }
+
+      .social:focus-visible {
+        outline: 3px solid var(--ink);
+        outline-offset: 3px;
+      }
+
+      @media (max-width: 700px) {
+        .page {
+          padding: 2rem 1.25rem 3rem;
+        }
+
+        .hero {
+          grid-template-columns: auto 1fr;
+        }
+
+        .bar {
+          width: 1rem;
+        }
+
+        h1 {
+          text-align: left;
+          font-size: clamp(3rem, 15vw, 5.5rem);
+        }
+
+        .content {
+          padding-left: 0;
+        }
+
+        .socials {
+          --size: 4rem;
+          gap: .5rem;
+        }
+
+        .socials::before {
+          margin-right: -.5rem;
+        }
+      }
+
+      @media (max-width: 280px) {
+        .socials {
+          --size: 3.5rem;
+          gap: .25rem;
+        }
+
+        .socials::before {
+          margin-right: -.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div class="bar"></div>
+        <h1>Phillip<br>Entin</h1>
+      </header>
+
+      <section class="cv">
+        <!-- General introduction -->
+        <details>
+          <summary>About me</summary>
+          <div class="content">
+            <p>
+              My name is Phillip Entin and I am a PhD candidate at USI Lugano in Switzerland. I am working at the <a href="https://reveal.si.usi.ch/">REVEAL Lab</a> under the supervision of <a href="https://www.inf.usi.ch/faculty/lanza/">Prof. Dr. Michele Lanza</a>.
+            </p>
+            <p>
+              Before that I earned my master's degree in <a href="https://elite-se.informatik.uni-augsburg.de/">software engineering in Augsburg and Munich</a>, where I wrote my master's thesis on the automated translation of COBOL code using LLMs, symbolic execution and delta debugging.
+            </p>
+            <p>
+              I earned my bachelor's degree in business informatics at <a href="https://www.hs-rm.de/">RheinMain University of Applied Sciences and Arts</a> in Wiesbaden, my city of birth. I was a dual student in collaboration with the German railways. There I wrote my bachelor's thesis on the integration of IT systems into the BPMN metamodel and how to visualize them.
+            </p>
+            <p>
+              I speak German (native language), English (B2), French (B1.2) and Italian (A2.1).
+            </p>
+          </div>
+        </details>
+
+        <!-- Education -->
+        <details>
+          <summary>Education</summary>
+          <div class="content">
+            <article>
+              <h3>PhD in Software Engineering, USI Lugano (ongoing)</h3>
+              <p>02/2026–present</p>
+            </article>
+            <article>
+              <h3>M.Sc. in Software Engineering, University of Augsburg, TU Munich, LMU Munich</h3>
+              <p>10/2023–10/2025</p>
+            </article>
+            <article>
+              <h3>B.Sc. in Business Informatics, RheinMain University of Applied Sciences and Arts</h3>
+              <p>09/2020–09/2023</p>
+            </article>
+          </div>
+        </details>
+
+        <!-- Work Experience -->
+        <details>
+          <summary>Work Experience</summary>
+          <div class="content">
+            <article>
+              <h3>Working student at BMW Group, Munich</h3>
+              <h4>10/2024–05/2025</h4>
+              <p>Duties included creating an AI-based pipeline to automatically map defect reports to car components and visualizing automotive IT infrastructure.</p>
+            </article>
+            <article>
+              <h3>Intern at Siemens Technology, Munich</h3>
+              <h4>07/2024–09/2024</h4>
+              <p>Duties included implementing and evaluating several computer vision approaches for obstacle detection in the railway domain.</p>
+            </article>
+            <article>
+              <h3>Dual student at Deutsche Bahn (German railways)</h3>
+              <h4>09/2020–09/2023</h4>
+              <p>Duties included timetable data management, software engineering, web development, strategic data management (CIO/CDO), strategic offer management for long-distance trains, and agile management.</p>
+            </article>
+          </div>
+        </details>
+
+        <!-- Publications -->
+        <details>
+          <summary>Publications</summary>
+          <div class="content">
+            <article>
+              <h3>JUST ACCEPTED: Depicting Software Evolution Using Spirals</h3>
+              <p><em><a href="https://vissoft.io/2026/index.html">VISSOFT 2026</a>, Full paper</em></p>
+              <p>Phillip Entin, Marco Raglianti, Michele Lanza</p>
+              <p><a href="">Paper</a>, <a href="https://nautilus.si.usi.ch/">Tool</a></p>
+            </article>
+            <article>
+              <h3>JUST ACCEPTED: SEDCoT: Enhancing LLM-Based COBOL Code Translation via Symbolic Execution and Delta Debugging</h3>
+              <p><em><a href="https://conf.researchr.org/home/issta-2026">ISSTA 2026</a>, Full paper</em></p>
+              <p>Phillip Entin, Wenchao Gu, Alexander Knapp, Chunyang Chen</p>
+              <p><a href="https://arxiv.org/pdf/2607.04092">Paper</a>, <a href="https://github.com/P-droi/issta2026-sedcot">Code</a></p>
+            </article>
+          </div>
+        </details>
+
+        <details>
+          <summary>Teaching</summary>
+          <div class="content">
+            <article>
+              <h3>Tutor for programming methods</h3>
+              <p><em>April 2023–July 2023</em></p>
+              <p>Undergraduate course, RheinMain University of Applied Sciences and Arts, 2023</p>
+              <p>
+                The course “Programming Methods” covers fundamental and advanced concepts of software development. It focuses on structured and object-oriented programming, clean code and program design, error handling, testing, and refactoring. These topics are complemented by practical aspects such as database access, concurrency (multithreading), and modern programming language features.
+              </p>
+            </article>
+            <article>
+              <h3>Tutor for object-oriented software development</h3>
+              <p><em>October 2022–February 2023</em></p>
+              <p>Undergraduate course, RheinMain University of Applied Sciences and Arts, 2022</p>
+              <p>
+                The course “Object-Oriented Software Development” focuses on practical and theoretical aspects of object-oriented software development using Java. It introduces fundamental programming constructs (data types, control structures, recursion, arrays) and progresses into object-oriented concepts such as classes, inheritance, interfaces, and encapsulation. Students also work with error handling, graphical user interfaces (Swing), and more advanced features like generics and container classes.
+              </p>
+            </article>
+            <article>
+              <h3>Tutor for programming methods</h3>
+              <p><em>April 2022–July 2022</em></p>
+              <p>Undergraduate course, RheinMain University of Applied Sciences and Arts, 2022</p>
+              <p>
+                The course “Programming Methods” covers fundamental and advanced concepts of software development. It focuses on structured and object-oriented programming, clean code and program design, error handling, testing, and refactoring. These topics are complemented by practical aspects such as database access, concurrency (multithreading), and modern programming language features.
+              </p>
+            </article>
+          </div>
+        </details>
+
+        <details>
+          <summary>Service and Leadership</summary>
+          <div class="content">
+            <ul class="service-list">
+              <li><a href="https://www.elitenetzwerk.bayern.de/en/home/funding-programs/max-weber-program">Max Weber Alumnus</a></li>
+              <li>1st Prize, Innovation Challenge Dingolfing 2023</li>
+              <li><a href="https://www.e-fellows.net/">e-fellows.net</a> scholarship alumnus</li>
+              <li>Presidential commission for studies and teaching at RheinMain University of Applied Sciences and Arts</li>
+              <li>Youth officer in a local tennis club, 2019–2023</li>
+              <li>1st Prize “Ilmenauer Physiksommer” 2018</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>Talks</summary>
+          <div class="content">
+            <article>
+              <h3>Visualizing GitHub Repositories with Nautilus</h3>
+              <p><em><a href="https://conf.researchr.org/details/iwst-2026/iwst-2026-papers/2/Visualizing-GitHub-Repositories-with-Nautilus">IWST 2026</a>, Talk</em></p>
+              <p>Phillip Entin, Marco Raglianti, Michele Lanza</p>
+              <p><a href="https://conf.researchr.org/details/iwst-2026/iwst-2026-papers/2/Visualizing-GitHub-Repositories-with-Nautilus">Talk details</a></p>
+            </article>
+          </div>
+        </details>
+      </section>
+
+      <nav class="socials" aria-label="Contact and profiles">
+        <a class="social" href="https://github.com/P-droi" aria-label="GitHub" title="GitHub">GH</a>
+        <a class="social" href="https://orcid.org/0009-0009-3591-5589" aria-label="ORCID" title="ORCID">iD</a>
+        <a class="social" href="mailto:phillip.entin@usi.ch" aria-label="Email Phillip Entin" title="Email">@</a>
+        <a class="social" href="https://www.linkedin.com/in/phillip-entin" aria-label="LinkedIn" title="LinkedIn">in</a>
+      </nav>
+    </div>
+  </body>
+</html>
